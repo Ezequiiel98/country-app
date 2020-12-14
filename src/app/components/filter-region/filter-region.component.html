@@ -1,0 +1,14 @@
+<ul class="container">
+  <li class="filter">
+    <div class="default" (click)="showOptions = !showOptions">
+      <span>Filter by Region</span> <img class="icon" [ngClass]="{'rotate-icon': showOptions}" src="assets/icons/arrow-down-icon.svg" alt="">
+    </div> 
+    <ul [ngClass]="{'show-options': showOptions}" class="options">
+      <li class="option">Africa</li>
+      <li class="option">America</li>
+      <li class="option">Asia</li>
+      <li class="option">Europe</li>
+      <li class="option">Oceania</li>
+    </ul>
+  </li>
+</ul>

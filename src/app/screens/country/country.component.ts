@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.scss']
 })
-export class CountryComponent implements OnInit {
 
-  constructor() { }
+export class CountryComponent implements OnInit {
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
-
 }

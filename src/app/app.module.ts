@@ -6,12 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './screens/home/home.component';
 import { CountryComponent } from './screens/country/country.component';
+import { SearchComponent } from './components/search/search.component';
+import { CardCountryComponent } from './components/card-country/card-country.component';
+import { FilterRegionComponent } from './components/filter-region/filter-region.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CountryComponent
+    CountryComponent,
+    SearchComponent,
+    CardCountryComponent,
+    FilterRegionComponent
   ],
   imports: [
     BrowserModule,

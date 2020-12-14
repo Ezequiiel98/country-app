@@ -1,0 +1,46 @@
+@import '../../../assets/scss/colors.scss';
+
+.container-input {
+  position: relative;
+}
+
+.input {
+  padding: 20px 20px 20px 60px;
+  min-width: 400px;
+  background-color: $bgSecondary;
+  color: $textColorPrimary;
+  border: none;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 18px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 18px -6px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 18px -6px rgba(0,0,0,0.75);
+  outline: none;
+}
+
+.input::placeholder {
+ color:$textColorPrimary;
+ font-size: 16px;
+}
+
+.input::-webkit-input-placeholder {
+  color: $textColorPrimary;
+}
+
+.input::-moz-placeholder {
+  color: $textColorPrimary;
+}
+
+.input:-ms-input-placeholder {
+  color: $textColorPrimary;
+}
+
+.input:-moz-placeholder {
+  color: $textColorPrimary;
+}
+
+.icon {
+  position: absolute;
+  top: calc(50% - 13px);
+  bottom: calc(50% - 12px);
+  left: 20px;
+}

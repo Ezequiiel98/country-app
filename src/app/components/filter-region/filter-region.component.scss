@@ -1,0 +1,69 @@
+@import '../../../assets/scss/colors.scss';
+
+
+ul, li {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+}
+
+.filter {
+  position: relative;
+}
+
+.default, 
+.options {
+  background-color: $bgSecondary;
+  font-size: 17px;
+  min-width: 270px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 22px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 22px -6px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 22px -6px rgba(0,0,0,0.75);
+}
+
+.default {
+ display: flex;
+ justify-content: space-between;
+ padding: 20px 22px;
+  
+ &:hover {
+   cursor: pointer;
+ }
+}
+
+.options {
+  margin-top: 5px;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  min-width: 100%;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity .5s ease;
+}
+
+.show-options {
+  padding: 20px 10px;
+  height: auto;
+  opacity: 1;
+}
+
+.option {
+  padding: 10px 12px; 
+  transition: background-color .3s ease;
+
+  &:hover {
+    background-color: darken($bgSecondary, 3%);
+    cursor: pointer;
+  }
+}
+
+.icon {
+  transition: transform .3s ease;
+}
+
+.rotate-icon {
+  transform: rotateZ(180deg);
+}
