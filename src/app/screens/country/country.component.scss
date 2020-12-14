@@ -1,0 +1,112 @@
+@import '../../../assets/scss/colors.scss';
+
+.container {
+  margin: 70px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 930px) {
+  .container {
+    justify-content: space-between;
+    flex-direction: row;  
+  }
+}
+
+.container-img {
+  max-width: 580px;  
+}
+
+.shadow {
+  -webkit-box-shadow: 15px 15px 21px -15px rgba(0,0,0,0.75);
+  -moz-box-shadow: 15px 15px 21px -15px rgba(0,0,0,0.75);
+  box-shadow: 15px 15px 21px -15px rgba(0,0,0,0.75);
+  background-color: $bgSecondary;
+  color: $textColorPrimary;
+}
+
+.button {
+  @extend .shadow;
+  display: block;
+  margin-bottom: 70px;
+  padding: 10px 40px 10px 30px;
+  border: none;
+  width: 150px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.icon {
+  display: block;
+  margin-right: 15px;
+}
+
+.img {
+  max-width: 100%;
+}
+
+.container-info {
+  margin-top: 50px;
+}
+
+@media screen and (min-width: 930px) {
+  .container-info {
+    width: 650px;
+    margin: 90px auto 0 40px;
+  }
+}
+
+.container-details {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and(min-width: 768px) {
+  .container-details {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.border-countries {
+  margin-top: 40px; 
+  display: flex;
+  flex-wrap: wrap;
+  
+  & > .strong {
+    margin: 0;
+    min-width: 100%;
+  }
+
+}
+
+.border-country {
+  @extend .shadow;
+  margin: 10px;
+  margin-left: 0;
+  width: 100px; 
+  padding: 10px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .border-countries {
+    align-items: center;  
+    flex-wrap: nowrap; 
+    & > .strong {
+      min-width: auto;
+    }
+  }
+  
+  .border-country {
+    margin: 0 13px;
+  }
+}

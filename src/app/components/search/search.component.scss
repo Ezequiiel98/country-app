@@ -6,17 +6,22 @@
 
 .input {
   padding: 20px 20px 20px 60px;
-  min-width: 400px;
+  min-width: 280px;
   background-color: $bgSecondary;
   color: $textColorPrimary;
   border: none;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 0px 18px -6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 18px -6px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 18px -6px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 6px 8px 23px -11px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 8px 23px -11px rgba(0,0,0,0.75);
+  box-shadow: 6px 8px 23px -11px rgba(0,0,0,0.75);
   outline: none;
 }
 
+@media screen and (min-width: 480px) {
+  .input {
+    min-width: 400px;
+  }
+}
 .input::placeholder {
  color:$textColorPrimary;
  font-size: 16px;
