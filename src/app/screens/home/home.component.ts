@@ -10,39 +10,58 @@ import { Country } from '../../types/CountryInterface';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  dataCountries: Country[] = [];
   isLoading = true;
+  dataCountriesWithPagination: Array<Country[]>;
+  data: Country[] = [];
+  indexPage = 0;
 
   constructor(private _title: Title,
-    private _countriesService: CountriesService) { }
+              private _countriesService: CountriesService) { }
 
+  setDataPagination(data: Country[], index?: number) {
+    this.indexPage = index || index === 0 ? index : this.indexPage;
+    this.dataCountriesWithPagination = this._countriesService.getDataCountriesWithPagination(data);
+    this.data = this.dataCountriesWithPagination[this.indexPage];
+  }
+ 
   ngOnInit(): void {
     const allCountries = this._countriesService.getAllCountries();
-    
+
     this._title.setTitle('CountryApp');
 
     if (allCountries.length === 0) {
       this._countriesService.fetchAllCountries()
         .subscribe(data => {
-          this.dataCountries = data;
           this._countriesService.setAllCountries(data);
+          this.setDataPagination(data);
           this.isLoading = false;
         });
     } else {
-      this.dataCountries = allCountries;
+      this.setDataPagination(allCountries);
       this.isLoading = false;
     }
   }
 
  searchCountryByName(name: string) {
-   this.dataCountries = this._countriesService.getCountryByName(name);
+   const dataCountries = this._countriesService.getCountryByName(name);
+   this.setDataPagination(dataCountries, 0);
  }
- 
+
  searchCountryByRegion(region: string) {
-   const title = region === 'all' ? 'CountryApp': `${region} | CountryApp`;
+   const title = region === 'all' ? 'CountryApp' : `${region} | CountryApp`;
+   const dataCountries = this._countriesService.getCountriesByRegion(region);
 
    this._title.setTitle(title);
-   
-   this.dataCountries = this._countriesService.getCountriesByRegion(region);
+
+   this.setDataPagination(dataCountries, 0);
+ }
+
+ onScrollDown() {
+   if (this.dataCountriesWithPagination.length > this.indexPage) {
+     this.isLoading =  true;
+     this.indexPage++;
+     this.data = this.data.concat(this.dataCountriesWithPagination[this.indexPage]);
+     this.isLoading = false;
+   }
  }
 }

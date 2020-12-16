@@ -21,7 +21,6 @@ export class CountriesService {
 
   fetchAllCountries(countryName: string = 'all') {
     const url = countryName === 'all' ? `/${countryName}` : `/countryName/${countryName}`;
-    
     return this.getQuery(url).pipe(
       map((data: any) => data.map(
         ({ name, population, region, capital, flag, nativeName,
@@ -29,11 +28,37 @@ export class CountriesService {
            borders, languages, alpha3Code: code,
         }) => (
           {
-           name, population, region, capital, flag, nativeName,
+           name: name.replace(/-/, ' '), population, region, capital, flag, nativeName,
            subregion, topLevelDomain: topLevelDomain[0], currencies,
            borders, languages, code,
           }
       ))));
+  }
+
+  getDataCountriesWithPagination(data: Country[]) {
+    let countItem = 0;
+    let countPage = 0;
+    let temp: Country[] = [];
+    const result: Array<Country[]> = [];
+    const ITEMS_PER_PAGE = 10;
+ 
+    data.forEach((e, index) => {
+      temp.push(e);
+      countItem++;
+
+      if (countItem > (ITEMS_PER_PAGE - 1)) {
+        result.push(temp);
+        temp = [];
+        countItem = 0;
+        countPage++;
+      }
+
+      if (data.length - 1 === index) {
+        result.push(temp);
+      }
+    });
+
+    return result;
   }
 
   setAllCountries(data: Country[]) {

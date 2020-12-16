@@ -7,7 +7,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class FilterRegionComponent implements OnInit {
   showOptions = false;
-  regions: string[] = ['Africa', 'Americas', 'Asia', 'Europa', 'Oceania'];
+  regions: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
   selectedRegion = 'all';
   @Output() regionEmitter: EventEmitter<string>;
 

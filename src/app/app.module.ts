@@ -1,7 +1,8 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,13 +21,13 @@ import { NoInformationPipe } from './pipes/no-information.pipe';
     SearchComponent,
     CardCountryComponent,
     FilterRegionComponent,
-    NoInformationPipe
+    NoInformationPipe,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ScrollingModule,
+    InfiniteScrollModule,
   ],
   providers: [
     Title,

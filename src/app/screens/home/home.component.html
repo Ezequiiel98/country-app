@@ -2,13 +2,19 @@
   <app-search (searchCountryName)="searchCountryByName($event)"></app-search>
   <app-filter-region (regionEmitter)="searchCountryByRegion($event)"></app-filter-region>
 </div>
-
+<p class="error" *ngIf="!data && !isLoading">Country not found 😢</p>
+<div class="list-countries"
+  infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScrollDown()"
+      [scrollWindow]="true">
+    <ng-container *ngFor="let dataCountry of data">
+      <app-card-country  [dataCountry]="dataCountry" *ngIf="dataCountry"></app-card-country>
+    </ng-container>
+</div>
 <div *ngIf="isLoading" class="container-loader">
   <div class="dot"></div>
   <div class="dot"></div>
   <div class="dot"></div>
-</div>
-<p class="error" *ngIf="dataCountries.length === 0 && !isLoading">Country not found 😢</p>
-<div class="list-countries">
-  <app-card-country  [dataCountry]="dataCountry" *ngFor="let dataCountry of dataCountries"></app-card-country>
 </div>
