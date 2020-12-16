@@ -3,37 +3,37 @@
     <button class="button" [routerLink]="'/'">
       <img class="icon" src="assets/icons/arrow-back-icon.svg" alt=""> <span class="button-text">Back</span>
     </button>
-    <img class="img" [src]="dataCountry.flag" alt="">
+    <img class="img" [src]="dataCountry.flag" [alt]="'Flag of ' + dataCountry.name">
   </div>
   <div class="container-info">
     <h1 class="title">{{ dataCountry.name }}</h1>
     <div class="container-details">
       <div class="details">
         <p class="detail-item lighter">
-        <span class="strong">Native Name: </span> {{ dataCountry.nativeName }} 
+        <span class="strong">Native Name: </span> {{ dataCountry.nativeName  | noInformation }} 
         </p>
         <p class="detail-item lighter">
-        <span class="strong">Population: </span> {{ dataCountry.population }}
+        <span class="strong">Population: </span> {{ (dataCountry.population | number) | noInformation:'number' }}
         </p>
         <p class="detail-item lighter">
-        <span class="strong">Region: </span> {{ dataCountry.region }}
+        <span class="strong">Region: </span> {{ dataCountry.region | noInformation }}
         </p>
         <p class="detail-item lighter">
-        <span class="strong">Sub Region: </span> {{ dataCountry.subregion }} 
+        <span class="strong">Sub Region: </span> {{ dataCountry.subregion | noInformation }} 
         </p>
         <p class="detail-item lighter">
-        <span class="strong">Capital: </span> {{ dataCountry.capital }}
+        <span class="strong">Capital: </span> {{ dataCountry.capital | noInformation }}
         </p>
       </div>
       <div class="details">
         <p class="detail-item lighter">
-        <span class="strong">Top Level Domain: </span> {{ dataCountry.topLevelDomain }}
+        <span class="strong">Top Level Domain: </span> {{ dataCountry.topLevelDomain  | noInformation }}
         </p>
         <p class="detail-item lighter">
-        <span class="strong">Concurrencies: </span> {{ dataCountry.currencies[0]['name'] }}
+        <span class="strong">Concurrencies: </span> {{ dataCountry.currencies[0]['name'] | noInformation }}
         </p>
         <p class="detail-item lighter">
-        <span class="strong">Languages: </span> {{ dataCountry.languages[0]['name'] }}
+        <span class="strong">Languages: </span> {{ dataCountry.languages[0]['name'] | noInformation }}
         </p>
       </div>
     </div>

@@ -19,7 +19,6 @@ export class FilterRegionComponent implements OnInit {
   }
 
   emitRegion(region: string) {
-    console.log(region);
     this.showOptions = false;
     this.selectedRegion = region;
     this.regionEmitter.emit(region);

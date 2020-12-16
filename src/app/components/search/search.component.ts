@@ -23,9 +23,10 @@ export class SearchComponent implements OnInit {
     const lastString = sanitizedName[sanitizedName.length - 1];
     
     this.value = sanitizedName;
-    console.log(this.value);
     if (sanitizedName.trim().length > 0 && !whiteSpaces.includes(lastString)){
       this.searchCountryName.emit(sanitizedName);
+    } else if(sanitizedName.length === 0) {
+      this.searchCountryName.emit('');
     }
   }
 }

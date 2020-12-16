@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CardCountryComponent implements OnInit {
   messageError = 'No Information';
+  imgLoaded = false;
 
   @Input() dataCountry: any;
 
@@ -19,5 +20,9 @@ export class CardCountryComponent implements OnInit {
   seeDetailsCountry() {
     const urlCountry = this.dataCountry.name.replace(/\s\([^(*]*|\,/g, '').replace(/\s/g, '-');
     this._router.navigate(['/country', urlCountry]);
+  }
+  
+  showImg() {
+    this.imgLoaded = true;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { CountriesService } from '../../service/countries.service';
 import { Country } from '../../types/CountryInterface';
@@ -12,10 +13,13 @@ export class HomeComponent implements OnInit {
   dataCountries: Country[] = [];
   isLoading = true;
 
-  constructor(private _countriesService: CountriesService) { }
+  constructor(private _title: Title,
+    private _countriesService: CountriesService) { }
 
   ngOnInit(): void {
     const allCountries = this._countriesService.getAllCountries();
+    
+    this._title.setTitle('CountryApp');
 
     if (allCountries.length === 0) {
       this._countriesService.fetchAllCountries()
@@ -25,7 +29,7 @@ export class HomeComponent implements OnInit {
           this.isLoading = false;
         });
     } else {
-      this.dataCountries = allCountries; 
+      this.dataCountries = allCountries;
       this.isLoading = false;
     }
   }
@@ -35,6 +39,10 @@ export class HomeComponent implements OnInit {
  }
  
  searchCountryByRegion(region: string) {
+   const title = region === 'all' ? 'CountryApp': `${region} | CountryApp`;
+
+   this._title.setTitle(title);
+   
    this.dataCountries = this._countriesService.getCountriesByRegion(region);
  }
 }

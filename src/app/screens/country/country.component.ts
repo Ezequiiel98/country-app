@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CountriesService } from '../../service/countries.service';
 import { Country } from '../../types/CountryInterface';
 
@@ -10,33 +11,44 @@ import { Country } from '../../types/CountryInterface';
 })
 
 export class CountryComponent implements OnInit {
-  nameCountry: string;
+  countryName: string;
   dataCountry: Country;
   borders: Country[];
   loading = true;
   
-  constructor(private _activatedRoute: ActivatedRoute,
+  constructor(private _titleService: Title,
+              private _activatedRoute: ActivatedRoute,
+              private _router: Router,
               private _countryService: CountriesService) { 
      
     this._activatedRoute.params.subscribe(data => {
-      this.nameCountry = data?.name.replace(/\-/g, ' '); 
+      this.countryName = data?.name.replace(/\-/g, ' ');
     })
+  }
+  
+  getInformation() {
+    [this.dataCountry] = this._countryService.getCountryByName(this.countryName);
+    
+    if(this.dataCountry) {
+      this.borders = this._countryService.getCountriesByCodes(this.dataCountry.borders);
+      this.loading = false;
+      
+      this._titleService.setTitle(`${this.countryName} | CountryApp`);
+    } else {
+      this._router.navigate(['/']);
+    }
   }
 
   ngOnInit(): void {
     const allCountries = this._countryService.getAllCountries();
+    
     if(allCountries.length === 0) {
       this._countryService.fetchAllCountries().subscribe((data: Country[]) => {
         this._countryService.setAllCountries(data);
-        [this.dataCountry] = this._countryService.getCountryByName(this.nameCountry);
-        this.loading = false;
-        console.log(this.nameCountry);
+        this.getInformation();
       });
     } else {
-        [this.dataCountry] = this._countryService.getCountryByName(this.nameCountry);
-        this.borders = this._countryService.getCountriesByCodes(this.dataCountry.borders);
-        console.log(this.borders, this.dataCountry, this.nameCountry);
-        this.loading = false;
+      this.getInformation();
     }
   }
 }

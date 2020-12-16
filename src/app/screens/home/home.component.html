@@ -3,8 +3,12 @@
   <app-filter-region (regionEmitter)="searchCountryByRegion($event)"></app-filter-region>
 </div>
 
-<p *ngIf="isLoading">Loading..</p>
-<p *ngIf="dataCountries.length === 0 && !isLoading">Error</p>
+<div *ngIf="isLoading" class="container-loader">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+<p class="error" *ngIf="dataCountries.length === 0 && !isLoading">Country not found 😢</p>
 <div class="list-countries">
   <app-card-country  [dataCountry]="dataCountry" *ngFor="let dataCountry of dataCountries"></app-card-country>
 </div>

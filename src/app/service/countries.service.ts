@@ -54,7 +54,6 @@ export class CountriesService {
 
   getCountriesByCodes(codes: string[]) {
     const dataCountries: Country[] = this.getAllCountries();
-    console.log(codes, dataCountries[0].code);
     return dataCountries.filter(country => codes.includes(country.code));
   }
 

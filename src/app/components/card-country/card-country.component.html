@@ -1,11 +1,13 @@
 <!-- flag https://restcountries.eu/data/deu.svg-->
-
 <div class="card" (click)="seeDetailsCountry()">
-  <img class="img" [src]="dataCountry.flag" alt="">
+  <div class="img-container">
+    <div class="loader" *ngIf="!imgLoaded"></div>
+    <img (load)="showImg()" class="img" [ngClass]="{'show-img': imgLoaded}" [src]="dataCountry.flag" [alt]="'Flag of ' + dataCountry.name">
+  </div>
   <div class="details">
     <h4 class="title">{{ dataCountry.name }}</h4>
-    <p class="lighter"><span class="strong">Population: </span>{{ dataCountry.population ? (dataCountry.population | number ) : messageError }}</p>
-    <p class="lighter"><span class="strong">Region: </span>{{ dataCountry.region || messageError }}</p>
-    <p class="lighter"><span class="strong">Capital: </span>{{ dataCountry.capital || messageError }}</p>
+    <p class="lighter"><span class="strong">Population: </span>{{ (dataCountry.population | number) | noInformation:'number' }}</p>
+    <p class="lighter"><span class="strong">Region: </span>{{ dataCountry.region | noInformation }}</p>
+    <p class="lighter"><span class="strong">Capital: </span>{{ dataCountry.capital | noInformation }}</p>
   </div>
 </div>
