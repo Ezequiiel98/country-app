@@ -1,4 +1,4 @@
 <div class="container-input">
-  <input class="input" type="text" placeholder="Search for a country...">
+  <input  class="input" type="text" placeholder="Search for a country..." (input)="emitSearchCountryName(inputName.value)" [value]="value" #inputName>
   <img class="icon" src="assets/icons/search-icon.svg" alt="">
 </div>

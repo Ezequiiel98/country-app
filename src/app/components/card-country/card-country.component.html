@@ -1,11 +1,11 @@
 <!-- flag https://restcountries.eu/data/deu.svg-->
 
 <div class="card" (click)="seeDetailsCountry()">
-  <img class="img" src="https://restcountries.eu/data/deu.svg" alt="">
+  <img class="img" [src]="dataCountry.flag" alt="">
   <div class="details">
-    <h4 class="title">Germany</h4>
-    <p class="lighter"><span class="strong">Population: </span>81,770.900</p>
-    <p class="lighter"><span class="strong">Region: </span>Europe</p>
-    <p class="lighter"><span class="strong">Capital: </span>Berlin</p>
+    <h4 class="title">{{ dataCountry.name }}</h4>
+    <p class="lighter"><span class="strong">Population: </span>{{ dataCountry.population ? (dataCountry.population | number ) : messageError }}</p>
+    <p class="lighter"><span class="strong">Region: </span>{{ dataCountry.region || messageError }}</p>
+    <p class="lighter"><span class="strong">Capital: </span>{{ dataCountry.capital || messageError }}</p>
   </div>
 </div>

@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./card-country.component.scss']
 })
 export class CardCountryComponent implements OnInit {
+  messageError = 'No Information';
 
-  @Input() nameCountry: string;
+  @Input() dataCountry: any;
 
   constructor(private _router: Router) { }
 
@@ -16,6 +17,7 @@ export class CardCountryComponent implements OnInit {
   }
   
   seeDetailsCountry() {
-    this._router.navigate(['/country', this.nameCountry]);
+    const urlCountry = this.dataCountry.name.replace(/\s\([^(*]*|\,/g, '').replace(/\s/g, '-');
+    this._router.navigate(['/country', urlCountry]);
   }
 }

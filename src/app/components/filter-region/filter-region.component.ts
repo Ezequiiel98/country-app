@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter-region',
@@ -7,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterRegionComponent implements OnInit {
   showOptions = false;
+  regions: string[] = ['Africa', 'Americas', 'Asia', 'Europa', 'Oceania'];
+  selectedRegion = 'all';
+  @Output() regionEmitter: EventEmitter<string>;
 
-  constructor() { }
+  constructor() { 
+    this.regionEmitter = new EventEmitter();
+  } 
 
   ngOnInit(): void {
   }
 
+  emitRegion(region: string) {
+    console.log(region);
+    this.showOptions = false;
+    this.selectedRegion = region;
+    this.regionEmitter.emit(region);
+  }
 }

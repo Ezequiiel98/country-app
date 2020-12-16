@@ -1,53 +1,45 @@
-<div class="container">
+<div class="container" *ngIf="!loading">
   <div class="container-img">
     <button class="button" [routerLink]="'/'">
       <img class="icon" src="assets/icons/arrow-back-icon.svg" alt=""> <span class="button-text">Back</span>
     </button>
-    <img class="img" src="https://restcountries.eu/data/deu.svg" alt="">
+    <img class="img" [src]="dataCountry.flag" alt="">
   </div>
   <div class="container-info">
-    <h1 class="title">Germany</h1>
+    <h1 class="title">{{ dataCountry.name }}</h1>
     <div class="container-details">
       <div class="details">
         <p class="detail-item lighter">
-          <span class="strong">Native Name: </span> Deutschland
+        <span class="strong">Native Name: </span> {{ dataCountry.nativeName }} 
         </p>
         <p class="detail-item lighter">
-          <span class="strong">Population: </span> Deutschland
+        <span class="strong">Population: </span> {{ dataCountry.population }}
         </p>
         <p class="detail-item lighter">
-          <span class="strong">Region: </span> Deutschland
+        <span class="strong">Region: </span> {{ dataCountry.region }}
         </p>
         <p class="detail-item lighter">
-          <span class="strong">Sub Region: </span> Deutschland
+        <span class="strong">Sub Region: </span> {{ dataCountry.subregion }} 
         </p>
         <p class="detail-item lighter">
-          <span class="strong">Capital: </span> Deutschland
+        <span class="strong">Capital: </span> {{ dataCountry.capital }}
         </p>
       </div>
       <div class="details">
         <p class="detail-item lighter">
-          <span class="strong">Top Level Domain: </span> Deutschland
+        <span class="strong">Top Level Domain: </span> {{ dataCountry.topLevelDomain }}
         </p>
         <p class="detail-item lighter">
-          <span class="strong">Concurrencies: </span> Deutschland
+        <span class="strong">Concurrencies: </span> {{ dataCountry.currencies[0]['name'] }}
         </p>
         <p class="detail-item lighter">
-          <span class="strong">Languages: </span> Deutschland
-        </p>
-        <p class="detail-item lighter">
-          <span class="strong">Sub Region: </span> Deutschland
-        </p>
-        <p class="detail-item lighter">
-          <span class="strong">Capital: </span> Deutschland
+        <span class="strong">Languages: </span> {{ dataCountry.languages[0]['name'] }}
         </p>
       </div>
     </div>
-    <div class="border-countries">
+    <div class="border-countries" *ngIf="borders && borders.length > 0">
       <p class="strong">Border Countries: </p>
-      <p class="border-country">France</p>
-      <p class="border-country">France</p>
-      <p class="border-country">France</p>
+      <p class="border-country" *ngFor="let borderCountry of borders">{{ borderCountry.name }}</p>
     </div>
   </div>
 </div>

@@ -1,15 +1,10 @@
 <div class="container">
-  <app-search></app-search>
-  <app-filter-region></app-filter-region>
+  <app-search (searchCountryName)="searchCountryByName($event)"></app-search>
+  <app-filter-region (regionEmitter)="searchCountryByRegion($event)"></app-filter-region>
 </div>
 
+<p *ngIf="isLoading">Loading..</p>
+<p *ngIf="dataCountries.length === 0 && !isLoading">Error</p>
 <div class="list-countries">
-  <app-card-country [nameCountry]="'test'"></app-card-country>
-  <app-card-country [nameCountry]="'test'"></app-card-country>
-  <app-card-country [nameCountry]="'test'"></app-card-country>
-  <app-card-country [nameCountry]="'test'"></app-card-country>
-  <app-card-country [nameCountry]="'test'"></app-card-country>
-  <app-card-country [nameCountry]="'test'"></app-card-country>
-  <app-card-country [nameCountry]="'test'"></app-card-country>
-  <app-card-country [nameCountry]="'test'"></app-card-country>
+  <app-card-country  [dataCountry]="dataCountry" *ngFor="let dataCountry of dataCountries"></app-card-country>
 </div>

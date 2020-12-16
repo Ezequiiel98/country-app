@@ -80,7 +80,7 @@
   margin-top: 40px; 
   display: flex;
   flex-wrap: wrap;
-  
+   
   & > .strong {
     margin: 0;
     min-width: 100%;
@@ -92,7 +92,7 @@
   @extend .shadow;
   margin: 10px;
   margin-left: 0;
-  width: 100px; 
+  min-width: 100px; 
   padding: 10px;
   text-align: center;
 }
@@ -100,13 +100,13 @@
 @media screen and (min-width: 768px) {
   .border-countries {
     align-items: center;  
-    flex-wrap: nowrap; 
-    & > .strong {
+    
+     & > .strong {
       min-width: auto;
     }
   }
   
   .border-country {
-    margin: 0 13px;
+    margin: 13px 13px 0 13px;
   }
 }
