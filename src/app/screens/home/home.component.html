@@ -1,5 +1,5 @@
 <div class="container">
-  <app-search (searchCountryName)="searchCountryByName($event)"></app-search>
+  <app-search [value]="valueInputSearch" (searchCountryName)="searchCountryByName($event)"></app-search>
   <app-filter-region (regionEmitter)="searchCountryByRegion($event)"></app-filter-region>
 </div>
 <p class="error" *ngIf="!data && !isLoading">Country not found 😢</p>

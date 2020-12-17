@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   dataCountriesWithPagination: Array<Country[]>;
   data: Country[] = [];
   indexPage = 0;
+  valueInputSearch = '';
 
   constructor(private _title: Title,
               private _countriesService: CountriesService) { }
@@ -44,15 +45,16 @@ export class HomeComponent implements OnInit {
 
  searchCountryByName(name: string) {
    const dataCountries = this._countriesService.getCountryByName(name);
+   this.valueInputSearch = name;
    this.setDataPagination(dataCountries, 0);
  }
 
  searchCountryByRegion(region: string) {
    const title = region === 'all' ? 'CountryApp' : `${region} | CountryApp`;
    const dataCountries = this._countriesService.getCountriesByRegion(region);
-
+   
+   this.valueInputSearch = '';
    this._title.setTitle(title);
-
    this.setDataPagination(dataCountries, 0);
  }
 
