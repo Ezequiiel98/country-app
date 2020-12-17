@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Country } from '../types/CountryInterface';
@@ -26,13 +27,16 @@ export class CountriesService {
         ({ name, population, region, capital, flag, nativeName,
            subregion, topLevelDomain, currencies,
            borders, languages, alpha3Code: code,
-        }) => (
-          {
+        }) => {
+          const urlCountry = `${name.replace(/\s\([^(*]*|\,/g, '').replace(/\s/g, '-')}-${code}`.toLowerCase();
+          
+          return {
            name: name.replace(/-/, ' '), population, region, capital, flag, nativeName,
            subregion, topLevelDomain: topLevelDomain[0], currencies,
-           borders, languages, code,
-          }
-      ))));
+           borders, languages, code, url: urlCountry,
+          };
+        }
+      )));
   }
 
   getDataCountriesWithPagination(data: Country[]) {
@@ -92,4 +96,9 @@ export class CountriesService {
     return dataCountries.filter(country => region.toLowerCase() === country.region.toLowerCase());
   }
 
+  getCountryByUrl(url: string) {
+    const dataCountries: Country[] = this.getAllCountries();
+
+    return dataCountries.filter(country => url === country.url);
+  }
 }

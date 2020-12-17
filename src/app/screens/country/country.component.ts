@@ -11,7 +11,7 @@ import { Country } from '../../types/CountryInterface';
 })
 
 export class CountryComponent implements OnInit {
-  countryName: string;
+  countryUrl: string;
   dataCountry: Country;
   borders: Country[];
   loading = true;
@@ -22,18 +22,18 @@ export class CountryComponent implements OnInit {
               private _countryService: CountriesService) { 
      
     this._activatedRoute.params.subscribe(data => {
-      this.countryName = data?.name.replace(/\-/g, ' ');
-    })
+      this.countryUrl = data?.url;
+    });
   }
   
   getInformation() {
-    [this.dataCountry] = this._countryService.getCountryByName(this.countryName);
+    [this.dataCountry] = this._countryService.getCountryByUrl(this.countryUrl);
     
     if(this.dataCountry) {
       this.borders = this._countryService.getCountriesByCodes(this.dataCountry.borders);
       this.loading = false;
       
-      this._titleService.setTitle(`${this.countryName} | CountryApp`);
+      this._titleService.setTitle(`${this.dataCountry.name} | CountryApp`);
     } else {
       this._router.navigate(['/']);
     }
@@ -42,7 +42,7 @@ export class CountryComponent implements OnInit {
   ngOnInit(): void {
     const allCountries = this._countryService.getAllCountries();
     
-    if(allCountries.length === 0) {
+    if (allCountries.length === 0) {
       this._countryService.fetchAllCountries().subscribe((data: Country[]) => {
         this._countryService.setAllCountries(data);
         this.getInformation();

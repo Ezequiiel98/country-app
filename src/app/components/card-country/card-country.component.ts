@@ -18,8 +18,7 @@ export class CardCountryComponent implements OnInit {
   }
   
   seeDetailsCountry() {
-    const urlCountry = this.dataCountry.name.replace(/\s\([^(*]*|\,/g, '').replace(/\s/g, '-');
-    this._router.navigate(['/country', urlCountry]);
+    this._router.navigate(['/country', this.dataCountry.url]);
   }
   
   showImg() {

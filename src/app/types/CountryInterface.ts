@@ -11,4 +11,5 @@ export interface Country {
   borders: string[];
   languages: object[];
   code: string;
+  url: string;
 }
